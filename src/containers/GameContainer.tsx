@@ -11,6 +11,14 @@ const GameContainer: React.FC = () => {
     })
   );
 
+  const initalizeGameState = () => {
+    setGameState(
+      [...Array(30)].map(() => {
+        return [...Array(30)].map(() => false);
+      })
+    );
+  };
+
   const handleCellClick = (row: number, col: number) => {
     const nextState = gameState.slice().map((r) => r.slice());
     nextState[row][col] = !nextState[row][col];
@@ -67,6 +75,9 @@ const GameContainer: React.FC = () => {
     <>
       <button type="button" onClick={playState ? stopCycle : playCycle}>
         {playState ? 'Stop' : 'Start'}
+      </button>
+      <button type="button" onClick={initalizeGameState}>
+        Init
       </button>
       <CellTable width={30} height={30}>
         {gameState &&
