@@ -4,11 +4,12 @@ import styled from 'styled-components';
 interface CellTableProps {
   width: number;
   height: number;
+  isActive?: boolean;
 }
 
 const TableWrapper = styled.div<CellTableProps>`
   display: inline-grid;
-  background-color: #ced4da;
+  background-color: ${(props) => (props.isActive ? '#c1c5ca' : '#ced4da')};
   padding: 12px;
   grid-template-columns: repeat(${(props) => props.width}, 20px);
   grid-template-rows: repeat(${(props) => props.height}, 20px);
@@ -16,11 +17,11 @@ const TableWrapper = styled.div<CellTableProps>`
 `;
 
 const CellTable: React.FC<CellTableProps> = (props) => {
-  const { width, height, children } = props;
+  const { width, height, children, isActive } = props;
 
   return (
     <div>
-      <TableWrapper width={width} height={height}>
+      <TableWrapper width={width} height={height} isActive={isActive}>
         {children}
       </TableWrapper>
     </div>

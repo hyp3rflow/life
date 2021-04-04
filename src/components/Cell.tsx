@@ -10,6 +10,11 @@ const CellWrapper = styled.div<CellWrapperProps>`
   height: 20px;
   border-radius: 4px;
   background-color: ${(props) => (props.isActive ? '#495057' : '#fff')};
+  transition: color 0.3s ease;
+
+  :hover {
+    background-color: ${(props) => (props.isActive ? '#868e96' : '#e9ecef')};
+  }
 `;
 
 interface CellProps {

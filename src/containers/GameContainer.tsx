@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import Cell from 'components/Cell';
 import CellTable from 'components/CellTable';
+import Button from 'components/Button';
 
 const GameContainer: React.FC = () => {
   const [playState, setPlayState] = useState(false);
@@ -63,7 +64,7 @@ const GameContainer: React.FC = () => {
       return nextCycleState;
     });
 
-    setTimeoutId(setTimeout(playCycle, 500));
+    setTimeoutId(setTimeout(playCycle, 800));
   }, [gameState]);
 
   const stopCycle = () => {
@@ -73,13 +74,11 @@ const GameContainer: React.FC = () => {
 
   return (
     <>
-      <button type="button" onClick={playState ? stopCycle : playCycle}>
+      <Button onClick={playState ? stopCycle : playCycle}>
         {playState ? 'Stop' : 'Start'}
-      </button>
-      <button type="button" onClick={initalizeGameState}>
-        Init
-      </button>
-      <CellTable width={30} height={30}>
+      </Button>
+      <Button onClick={initalizeGameState}>Init</Button>
+      <CellTable width={30} height={30} isActive={playState}>
         {gameState &&
           gameState.map((row, rowIndex) =>
             row.map((state, colIndex) => (
